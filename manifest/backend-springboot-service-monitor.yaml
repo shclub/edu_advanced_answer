@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-springboot-monitor
+spec:
+  endpoints:
+  - interval: 30s
+    port: http
+    path: /actuator/prometheus # Get metrics from URI /q/metrics
+    scheme: http
+  selector:
+    matchLabels:
+      app: backend-springboot # select only label app = backend
